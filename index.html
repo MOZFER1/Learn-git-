@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Creator Studio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo-section">
+            <img src="icon.svg" alt="AI Creator Studio Logo" class="logo">
+            <span class="brand">AI Creator Studio</span>
+        </div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Gallery</a>
+            <a href="#">Pricing</a>
+            <button class="login-btn">Login</button>
+        </div>
+    </nav>
+    <header class="main-header">
+        <h1><span class="highlight">Turn your ideas</span> into stunning creations</h1>
+        <p class="subtitle">Harness the power of AI to transform text into amazing images and videos in seconds</p>
+        <div class="stats">
+            <div><span class="stat-number">2.5M+</span><br>Images Created</div>
+            <div><span class="stat-number">150K+</span><br>Videos Generated</div>
+            <div><span class="stat-number">50K+</span><br>Active Users</div>
+        </div>
+    </header>
+    <section class="content-description">
+        <form class="content-form">
+            <label for="desc" class="desc-label">Content Description</label>
+            <textarea id="desc" maxlength="500" placeholder="Write a detailed description of what you want to create... Example: A cute small cat sitting in a garden full of colorful flowers, cartoon style, warm lighting"></textarea>
+            <div class="type-section">
+                <button type="button" class="type-btn active">Image</button>
+                <button type="button" class="type-btn">Video</button>
+            </div>
+            <button type="submit" class="create-btn">Create Content</button>
+            <div class="attempts">25 attempts left this month</div>
+        </form>
+    </section>
+    <section class="preview-section">
+        <div class="preview-box">
+            <div class="preview-icon"></div>
+            <div class="preview-text">
+                <h2>Start Creating</h2>
+                <p>Write a description of what you want to create and click "Create Content" to see the result here</p>
+            </div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
