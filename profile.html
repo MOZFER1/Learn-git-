@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="css/profile-style.css">
+</head>
+<body>
+<div class="profile-container">
+    <!-- Sidebar -->
+    <aside class="profile-sidebar">
+        <div class="avatar">A</div>
+        <div class="username">arabic_user</div>
+        <div class="user-email">user@example.com</div>
+        <div class="user-stats">
+            <div><span>🗓️</span> Joined: 1441-12-01</div>
+            <div><span>🖼️</span> Images: 2</div>
+            <div><span>🎬</span> Videos: 1</div>
+        </div>
+        <button class="download-btn">Download All Content ⬇️</button>
+    </aside>
+    <!-- Main Content -->
+    <main class="profile-main">
+        <div class="profile-card">
+            <div class="profile-header">
+                <h2>Account Information</h2>
+                <button class="edit-btn">Edit</button>
+            </div>
+            <label class="profile-label" for="profile-username">Username</label>
+            <div class="input-group">
+                <span class="icon">👤</span>
+                <input type="text" id="profile-username" value="arabic_user" disabled>
+            </div>
+            <label class="profile-label" for="profile-email">Email</label>
+            <div class="input-group">
+                <span class="icon">📧</span>
+                <input type="email" id="profile-email" value="user@example.com" disabled>
+            </div>
+            <hr>
+            <div class="section-title">Privacy Settings</div>
+            <div class="switch-row">
+                <span>Allow Image Sharing</span>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="switch-row">
+                <span>Email Notifications</span>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <hr>
+            <div class="section-title danger">Advanced Options</div>
+            <button class="delete-btn">Delete Account</button>
+        </div>
+    </main>
+</div>
+</body>
+</html> 

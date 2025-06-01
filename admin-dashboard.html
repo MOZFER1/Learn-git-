@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | AICreate Studio</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+</head>
+<body>
+    <nav class="admin-navbar">
+        <div class="admin-logo-section">
+            <img src="icon.svg" alt="AICreate Studio Logo" class="admin-logo">
+            <span class="admin-brand">AICreate Studio</span>
+        </div>
+        <div class="admin-nav-links">
+            <a href="#">Dashboard</a>
+            <a href="#">Gallery</a>
+            <a href="#" class="active">Admin</a>
+        </div>
+        <div class="admin-profile">
+            <span class="admin-bell">&#128276;</span>
+            <span class="admin-user-icon">&#128100;</span>
+            <span class="admin-username">Demo</span>
+            <span class="admin-dropdown">&#9660;</span>
+        </div>
+    </nav>
+    <main class="admin-main">
+        <section class="admin-header">
+            <h1><span class="admin-shield">&#128737;</span> Admin Dashboard</h1>
+            <p class="admin-subtitle">System overview and management tools</p>
+        </section>
+        <section class="admin-stats">
+            <div class="admin-stat-card">
+                <div class="admin-stat-title">Total Users</div>
+                <div class="admin-stat-value">1 <span class="admin-stat-icon">&#128100;</span></div>
+            </div>
+            <div class="admin-stat-card">
+                <div class="admin-stat-title">Active Today</div>
+                <div class="admin-stat-value admin-green">0 <span class="admin-stat-icon">&#128200;</span></div>
+            </div>
+            <div class="admin-stat-card">
+                <div class="admin-stat-title">Total Content</div>
+                <div class="admin-stat-value">0 <span class="admin-stat-icon">&#128451;</span></div>
+            </div>
+            <div class="admin-stat-card">
+                <div class="admin-stat-title">Storage Used</div>
+                <div class="admin-stat-value admin-orange">1.2 TB <span class="admin-stat-icon">&#128200;</span></div>
+            </div>
+        </section>
+        <section class="admin-panels">
+            <div class="admin-panel">
+                <h2>User Management</h2>
+                <p>Manage user accounts, permissions, and access controls.</p>
+                <button class="admin-panel-btn">View All Users</button>
+                <button class="admin-panel-btn">User Permissions</button>
+                <button class="admin-panel-btn">Activity Logs</button>
+            </div>
+            <div class="admin-panel">
+                <h2>Content Management</h2>
+                <p>Monitor and moderate user-generated content across the platform.</p>
+                <button class="admin-panel-btn">Content Moderation</button>
+                <button class="admin-panel-btn">Content Analytics</button>
+                <button class="admin-panel-btn">Export Data</button>
+            </div>
+            <div class="admin-panel">
+                <h2>System Settings</h2>
+                <p>Configure system-wide settings and API integrations.</p>
+                <button class="admin-panel-btn">Settings</button>
+            </div>
+            <div class="admin-panel">
+                <h2>Analytics</h2>
+                <p>View detailed analytics and usage statistics.</p>
+                <button class="admin-panel-btn">View Analytics</button>
+            </div>
+        </section>
+    </main>
+    <script src="admin-dashboard.js"></script>
+</body>
+</html>
