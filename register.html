@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="css/auth-style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <form class="auth-card" id="registerForm" dir="ltr">
+            <label class="auth-label" for="username">Username</label>
+            <div class="input-group">
+                <span class="icon">👤</span>
+                <input type="text" id="username" placeholder="Enter your username" required>
+            </div>
+            <label class="auth-label" for="email">Email Address</label>
+            <div class="input-group">
+                <span class="icon">📧</span>
+                <input type="email" id="email" placeholder="your@email.com" required>
+            </div>
+            <label class="auth-label" for="password">Password</label>
+            <div class="input-group">
+                <span class="icon">🔒</span>
+                <input type="password" id="password" placeholder="********" required>
+            </div>
+            <label class="auth-label" for="confirmPassword">Confirm Password</label>
+            <div class="input-group">
+                <span class="icon">🔒</span>
+                <input type="password" id="confirmPassword" placeholder="********" required>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">I agree to the <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a></label>
+            </div>
+            <button type="submit" class="auth-btn">Create Account</button>
+            <p class="switch-link">Already have an account? <a href="login.html">Sign in</a></p>
+        </form>
+    </div>
+    <script src="js/auth-form.js"></script>
+</body>
+</html> 

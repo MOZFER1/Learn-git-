@@ -1,54 +1,124 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Creator Studio</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AICreate Studio</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo-section">
-            <img src="icon.svg" alt="AI Creator Studio Logo" class="logo">
-            <span class="brand">AI Creator Studio</span>
-        </div>
-        <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Gallery</a>
-            <a href="#">Pricing</a>
-            <button class="login-btn">Login</button>
-        </div>
+  <header class="header">
+    <div class="logo">
+      <span class="logo-icon">⚡</span>
+      <span class="logo-text">AICreate Studio</span>
+    </div>
+    <nav class="nav">
+      <a href="#" class="nav-link active">Dashboard</a>
+      <a href="#" class="nav-link">Gallery</a>
+      <a href="#" class="nav-link">Admin</a>
+      <a href="login.html" class="nav-link signup-btn">Sign Up</a>
     </nav>
-    <header class="main-header">
-        <h1><span class="highlight">Turn your ideas</span> into stunning creations</h1>
-        <p class="subtitle">Harness the power of AI to transform text into amazing images and videos in seconds</p>
-        <div class="stats">
-            <div><span class="stat-number">2.5M+</span><br>Images Created</div>
-            <div><span class="stat-number">150K+</span><br>Videos Generated</div>
-            <div><span class="stat-number">50K+</span><br>Active Users</div>
-        </div>
-    </header>
-    <section class="content-description">
-        <form class="content-form">
-            <label for="desc" class="desc-label">Content Description</label>
-            <textarea id="desc" maxlength="500" placeholder="Write a detailed description of what you want to create... Example: A cute small cat sitting in a garden full of colorful flowers, cartoon style, warm lighting"></textarea>
-            <div class="type-section">
-                <button type="button" class="type-btn active">Image</button>
-                <button type="button" class="type-btn">Video</button>
-            </div>
-            <button type="submit" class="create-btn">Create Content</button>
-            <div class="attempts">25 attempts left this month</div>
-        </form>
+    <div class="user-menu">
+      <span class="notif-dot"></span>
+      <span class="user-icon">👤</span>
+      <span class="user-name">Demo</span>
+      <span class="dropdown-arrow">▼</span>
+      <div class="dropdown">
+        <a href="#">Profile</a>
+        <a href="#">Settings</a>
+        <a href="#">Admin Panel</a>
+        <a href="#" class="logout">Log out</a>
+      </div>
+    </div>
+  </header>
+  <main class="main-content">
+    <section class="hero">
+      <h1><span class="bold">Create Stunning</span> <span class="highlight">AI Content</span></h1>
+      <p class="subtitle">Transform your ideas into beautiful images and videos using cutting-edge AI technology. Create, customize, and download professional content in minutes.</p>
     </section>
-    <section class="preview-section">
-        <div class="preview-box">
-            <div class="preview-icon"></div>
-            <div class="preview-text">
-                <h2>Start Creating</h2>
-                <p>Write a description of what you want to create and click "Create Content" to see the result here</p>
+    <section class="tabs-section">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="images">Generate Images</button>
+        <button class="tab-btn" data-tab="videos">Generate Videos</button>
+      </div>
+      <div class="tab-content" id="images">
+        <div class="generate-container">
+          <div class="generate-form">
+            <label for="image-desc" class="form-label">Describe the image you want to create...</label>
+            <textarea id="image-desc" class="input-area" placeholder="e.g., 'A serene mountain landscape at sunset with purple clouds'"></textarea>
+            <div class="style-buttons">
+              <button>Photorealistic</button>
+              <button>Digital Art</button>
+              <button>Oil Painting</button>
+              <button>Sketch</button>
+              <button>Watercolor</button>
+              <button>Abstract</button>
+              <button>Anime</button>
+              <button>Cyberpunk</button>
             </div>
+            <div class="dropdown-row">
+              <select id="img-dim">
+                <option>Square (1024x1024)</option>
+                <option>Portrait (1024x1536)</option>
+                <option>Landscape (1536x1024)</option>
+              </select>
+              <select id="img-quality">
+                <option>Standard</option>
+                <option>High</option>
+                <option>Ultra</option>
+              </select>
+            </div>
+            <button class="generate-btn">Generate Image</button>
+          </div>
+          <div class="tips-box tips-blue">
+            <h3>💡 Image Generation Tips</h3>
+            <ul>
+              <li>Be specific about colors, lighting, and composition</li>
+              <li>Include art style preferences (realistic, cartoon, etc.)</li>
+              <li>Mention camera angles or perspectives</li>
+              <li>Add mood or atmosphere descriptions</li>
+              <li>Try different style presets for unique looks</li>
+            </ul>
+          </div>
         </div>
+      </div>
+      <div class="tab-content" id="videos" style="display:none;">
+        <div class="generate-container">
+          <div class="generate-form">
+            <label for="video-desc" class="form-label">Describe the video scene...</label>
+            <textarea id="video-desc" class="input-area" placeholder="e.g., 'A time-lapse of city lights at night with moving traffic'"></textarea>
+            <div class="dropdown-row">
+              <select id="vid-duration">
+                <option>5 seconds</option>
+                <option>10 seconds</option>
+                <option>20 seconds</option>
+              </select>
+              <select id="vid-res">
+                <option>720p</option>
+                <option>1080p</option>
+                <option>4K</option>
+              </select>
+            </div>
+            <button class="generate-btn video">Generate Video</button>
+          </div>
+          <div class="tips-box tips-purple">
+            <h3>🎬 Video Generation Tips</h3>
+            <ul>
+              <li>Describe motion and movement clearly</li>
+              <li>Specify camera movements (pan, zoom, etc.)</li>
+              <li>Include timing references (slow motion, fast)</li>
+              <li>Mention lighting changes or effects</li>
+              <li>Keep scenes simple for better results</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
-    <script src="script.js"></script>
+    <section class="recent-creations">
+      <h2>Recent Creations</h2>
+      <a href="#" class="view-all">View All</a>
+    </section>
+  </main>
+  <script src="script.js"></script>
 </body>
 </html>
