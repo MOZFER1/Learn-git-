@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Content Gallery - AICreate Studio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <span class="logo-icon">⚡</span>
+      <span class="logo-text">AICreate Studio</span>
+    </div>
+    <nav class="nav">
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
+      <a href="gallery.html" class="nav-link active">Gallery</a>
+      <a href="#" class="nav-link">Admin</a>
+      <a href="login.html" class="nav-link signup-btn">Sign Up</a>
+    </nav>
+    <div class="user-menu">
+      <span class="notif-dot"></span>
+      <span class="user-icon">👤</span>
+      <span class="user-name">Demo</span>
+      <span class="dropdown-arrow">▼</span>
+      <div class="dropdown">
+        <a href="#">Profile</a>
+        <a href="#">Settings</a>
+        <a href="#">Admin Panel</a>
+        <a href="#" class="logout">Log out</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <section class="gallery-header">
+      <h1>Content Gallery</h1>
+      <p>Explore and manage your AI-generated content</p>
+    </section>
+
+    <section class="gallery-controls">
+      <div class="search-bar">
+        <input type="text" placeholder="Search your content..." />
+      </div>
+      <div class="gallery-actions">
+        <button class="filter-btn">🔍 Newest First ▾</button>
+        <button class="layout-btn">🔲</button>
+        <button class="layout-btn">☰</button>
+      </div>
+    </section>
+
+    <section class="gallery-tabs">
+      <button class="tab active">My Content</button>
+      <button class="tab">Community</button>
+    </section>
+
+    <section class="gallery-empty">
+      <h2>Your Creations (0)</h2>
+      <div class="empty-content">
+        <img src="no-content-icon.png" alt="No content" />
+        <p>Start creating your first AI-generated content!</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (اختياري إذا أردت نفس الفوتر الموجود) -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section brand">
+        <h2><img src="icon.png" alt="" class="footer-icon" /> AI Creator Studio</h2>
+        <p>منصة متطورة لإنشاء المحتوى المرئي باستخدام أحدث تقنيات الذكاء الاصطناعي</p>
+      </div>
+      <div class="footer-section">
+        <h3>المنتجات</h3>
+        <ul>
+          <li>مولد الصور</li>
+          <li>مولد الفيديو</li>
+          <li>محرر النصوص</li>
+          <li>API للمطورين</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>الشركة</h3>
+        <ul>
+          <li>من نحن</li>
+          <li>التسعير</li>
+          <li>المدونة</li>
+          <li>الوظائف</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>الدعم</h3>
+        <ul>
+          <li>مركز المساعدة</li>
+          <li>اتصل بنا</li>
+          <li>الشروط والأحكام</li>
+          <li>سياسة الخصوصية</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 AI Creator Studio. جميع الحقوق محفوظة.</p>
+      <div class="social-icons">
+        <img src="icon1.png" alt="" />
+        <img src="icon2.png" alt="" />
+        <img src="icon3.png" alt="" />
+        <img src="icon4.png" alt="" />
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
