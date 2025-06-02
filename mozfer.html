@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AICreate Studio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    /* Header Styles */
+    .header {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .logo-icon {
+      font-size: 2rem;
+    }
+
+    .nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    .signup-btn {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white !important;
+      padding: 0.5rem 1.5rem;
+      border-radius: 25px;
+    }
+
+    .user-menu {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: white;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: white;
+      border-radius: 8px;
+      padding: 0.5rem 0;
+      min-width: 150px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: none;
+      z-index: 1000;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: #333;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .dropdown a:hover {
+      background: #f5f5f5;
+    }
+
+    /* Main Content Styles */
+    .main-content {
+      min-height: calc(100vh - 140px);
+      padding: 2rem;
+    }
+
+    /* Page Container */
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      color: white;
+      margin-bottom: 3rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .highlight {
+      background: linear-gradient(45deg, #f093fb, #f5576c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Tabs Section */
+    .tabs-section {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      justify-content: center;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      border-color: transparent;
+    }
+
+    .generate-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .generate-form {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 15px;
+    }
+
+    .form-label {
+      color: white;
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .input-area {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 1rem;
+      resize: vertical;
+      min-height: 100px;
+      margin-bottom: 1rem;
+    }
+
+    .style-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .style-buttons button {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .style-buttons button:hover, .style-buttons button.selected {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      border-color: transparent;
+    }
+
+    .dropdown-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .dropdown-row select {
+      flex: 1;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .generate-btn {
+      width: 100%;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      padding: 1rem;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .generate-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .tips-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 15px;
+      color: white;
+    }
+
+    .tips-box h3 {
+      margin-bottom: 1rem;
+    }
+
+    .tips-box ul {
+      list-style: none;
+    }
+
+    .tips-box li {
+      padding: 0.3rem 0;
+      opacity: 0.9;
+    }
+
+    .tips-box li:before {
+      content: "✓ ";
+      color: #4ade80;
+      font-weight: bold;
+    }
+
+    /* Gallery Styles */
+    .gallery-header {
+      text-align: center;
+      color: white;
+      margin-bottom: 2rem;
+    }
+
+    .gallery-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .gallery-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+    }
+
+    .search-bar input {
+      padding: 0.8rem 1.2rem;
+      border: none;
+      border-radius: 25px;
+      width: 300px;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .gallery-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .filter-btn, .layout-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover, .layout-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .gallery-tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      justify-content: center;
+    }
+
+    .tab {
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .tab.active {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      border-color: transparent;
+    }
+
+    .gallery-empty {
+      text-align: center;
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 3rem;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Auth Styles */
+    .auth-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 60vh;
+    }
+
+    .auth-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 20px;
+      width: 400px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .auth-header {
+      text-align: center;
+      color: white;
+      margin-bottom: 2rem;
+    }
+
+    .input-group {
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1rem;
+    }
+
+    .input-group input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .auth-btn {
+      width: 100%;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      padding: 1rem;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    .switch-link {
+      text-align: center;
+      margin-top: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .switch-link a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Profile Styles */
+    .profile-container {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .profile-sidebar {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 20px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      height: fit-content;
+    }
+
+    .profile-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    .profile-name {
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .profile-role {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 1.5rem;
+    }
+
+    .profile-edit-btn {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    .profile-details {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    .profile-details h2 {
+      color: white;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      color: white;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1rem;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .profile-save-btn {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    .footer {
+      background: rgba(0, 0, 0, 0.3);
+      color: white;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-section h2,
+    .footer-section h3 {
+      margin-bottom: 1rem;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section li {
+      padding: 0.3rem 0;
+      opacity: 0.8;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav {
+        gap: 1rem;
+      }
+
+      .generate-container {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-container {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-controls {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .search-bar input {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <span class="logo-icon">⚡</span>
+      <span class="logo-text">AICreate Studio</span>
+    </div>
+    <nav class="nav">
+      <a href="#" class="nav-link active" data-page="dashboard">Dashboard</a>
+      <a href="#" class="nav-link" data-page="gallery">Gallery</a>
+      <a href="#" class="nav-link" data-page="register">Sign Up</a>
+    </nav>
+    <div class="user-menu">
+      <span class="notif-dot">🔔</span>
+      <span class="user-icon">👤</span>
+      <span class="user-name">MOZFER</span>
+      <span class="dropdown-arrow">▼</span>
+      <div class="dropdown">
+        <a href="#" data-page="profile">Profile</a>
+        <a href="#" data-page="login">Log out</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Dashboard Page -->
+    <div id="dashboard" class="page active">
+      <section class="hero">
+        <h1><span class="bold">Create Stunning</span> <span class="highlight">AI Content</span></h1>
+        <p class="subtitle">Transform your ideas into beautiful images and videos using cutting-edge AI technology. Create, customize, and download professional content in minutes.</p>
+      </section>
+
+      <section class="tabs-section">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="images">Generate Images</button>
+          <button class="tab-btn" data-tab="videos">Generate Videos</button>
+        </div>
+        <div class="tab-content" id="images">
+          <div class="generate-container">
+            <div class="generate-form">
+              <label for="image-desc" class="form-label">Describe the image you want to create...</label>
+              <textarea id="image-desc" class="input-area" placeholder="e.g., 'A serene mountain landscape at sunset with purple clouds'"></textarea>
+              <div class="style-buttons">
+                <button>Photorealistic</button>
+                <button>Digital Art</button>
+                <button>Oil Painting</button>
+                <button>Sketch</button>
+                <button>Watercolor</button>
+                <button>Abstract</button>
+                <button>Anime</button>
+                <button>Cyberpunk</button>
+              </div>
+              <div class="dropdown-row">
+                <select id="img-dim">
+                  <option>Square (1024x1024)</option>
+                  <option>Portrait (1024x1536)</option>
+                  <option>Landscape (1536x1024)</option>
+                </select>
+                <select id="img-quality">
+                  <option>Standard</option>
+                  <option>High</option>
+                  <option>Ultra</option>
+                </select>
+              </div>
+              <button class="generate-btn">Generate Image</button>
+            </div>
+            <div class="tips-box">
+              <h3>💡 Image Generation Tips</h3>
+              <ul>
+                <li>Be specific about colors, lighting, and composition</li>
+                <li>Include art style preferences (realistic, cartoon, etc.)</li>
+                <li>Mention camera angles or perspectives</li>
+                <li>Add mood or atmosphere descriptions</li>
+                <li>Try different style presets for unique looks</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="tab-content" id="videos" style="display:none;">
+          <div class="generate-container">
+            <div class="generate-form">
+              <label for="video-desc" class="form-label">Describe the video scene...</label>
+              <textarea id="video-desc" class="input-area" placeholder="e.g., 'A time-lapse of city lights at night with moving traffic'"></textarea>
+              <div class="dropdown-row">
+                <select id="vid-duration">
+                  <option>5 seconds</option>
+                  <option>10 seconds</option>
+                  <option>20 seconds</option>
+                </select>
+                <select id="vid-res">
+                  <option>720p</option>
+                  <option>1080p</option>
+                  <option>4K</option>
+                </select>
+              </div>
+              <button class="generate-btn video">Generate Video</button>
+            </div>
+            <div class="tips-box">
+              <h3>🎬 Video Generation Tips</h3>
+              <ul>
+                <li>Describe motion and movement clearly</li>
+                <li>Specify camera movements (pan, zoom, etc.)</li>
+                <li>Include timing references (slow motion, fast)</li>
+                <li>Mention lighting changes or effects</li>
+                <li>Keep scenes simple for better results</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Gallery Page -->
+    <div id="gallery" class="page">
+      <section class="gallery-header">
+        <h1>Content Gallery</h1>
+        <p>Explore and manage your AI-generated content</p>
+      </section>
+
+      <section class="gallery-controls">
+        <div class="search-bar">
+          <input type="text" placeholder="Search your content..." />
+        </div>
+        <div class="gallery-actions">
+          <button class="filter-btn">🔍 Newest First ▾</button>
+          <button class="layout-btn">🔲</button>
+          <button class="layout-btn">☰</button>
+        </div>
+      </section>
+
+      <section class="gallery-tabs">
+        <button class="tab active">My Content</button>
+        <button class="tab">Community</button>
+      </section>
+
+      <section class="gallery-empty">
+        <h2 style="color: white;">Your Creations (0)</h2>
+        <div class="empty-content">
+          <div style="font-size: 4rem; margin: 2rem 0;">📁</div>
+          <p>Start creating your first AI-generated content!</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Profile Page -->
+    <div id="profile" class="page">
+      <div class="profile-container">
+        <div class="profile-sidebar">
+          <div style="width: 100px; height: 100px; background: linear-gradient(45deg, #667eea, #764ba2); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem;">👤</div>
+          <h2 class="profile-name">John Doe</h2>
+          <p class="profile-role">Content Creator</p>
+          <button class="profile-edit-btn">Edit Profile</button>
+        </div>
+
+        <div class="profile-details">
+          <h2>Profile Settings</h2>
+          <form class="profile-form">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" id="username" placeholder="Enter your username" />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" id="email" placeholder="Enter your email" />
+            </div>
+
+            <div class="form-group">
+              <label for="bio">Bio</label>
+              <textarea id="bio" rows="4" placeholder="Write something about yourself..."></textarea>
+            </div>
+
+            <button type="submit" class="profile-save-btn">Save Changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login" class="page">
+      <div class="auth-container">
+        <form class="auth-card" id="loginForm">
+          <div class="auth-header">
+            <h1>Welcome Back</h1>
+            <p>Sign in to your account</p>
+          </div>
+          <div class="input-group">
+            <input type="email" placeholder="Email address" required>
+          </div>
+          <div class="input-group">
+            <input type="password" placeholder="Password" required>
+          </div>
+          <button type="submit" class="auth-btn">Sign In</button>
+          <p class="switch-link">Don't have an account? <a href="#" data-page="register">Sign up</a></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Register Page -->
+    <div id="register" class="page">
+      <div class="auth-container">
+        <form class="auth-card" id="registerForm">
+          <div class="auth-header">
+            <h1>Create Account</h1>
+            <p>Join us to start your journey!</p>
+          </div>
+          <div class="input-group">
+            <input type="text" placeholder="Username" required>
+          </div>
+          <div class="input-group">
+            <input type="email" placeholder="Email address" required>
+          </div>
+          <div class="input-group">
+            <input type="password" placeholder="Password" required>
+          </div>
+          <div class="input-group">
+            <input type="password" placeholder="Confirm Password" required>
+          </div>
+          <button type="submit" class="auth-btn">Create Account</button>
+          <p class="switch-link">Already have an account? <a href="#" data-page="login">Sign in</a></p>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section brand">
+        <h2>⚡ AI Creator Studio</h2>
+        <p>منصة متطورة لإنشاء المحتوى المرئي باستخدام أحدث تقنيات الذكاء الاصطناعي</p>
+      </div>
+      <div class="footer-section">
+        <h3>المنتجات</h3>
+        <ul>
+          <li>مولد الصور</li>
+          <li>مولد الفيديو</li>
+          <li>محرر النصوص</li>
+          <li>API للمطورين</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>الشركة</h3>
+        <ul>
+          <li>من نحن</li>
+          <li>التسعير</li>
+          <li>المدونة</li>
+          <li>الوظائف</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>الدعم</h3>
+        <ul>
+          <li>مركز المساعدة</li>
+          <li>اتصل بنا</li>
+          <li>الشروط والأحكام</li>
+          <li>سياسة الخصوصية</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 AI Creator Studio. جميع الحقوق محفوظة.</p>
+      <div class="social-icons">
+        <span style="font-size: 1.5rem;">📘 📷 🐦 💼</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Navigation System
+    document.addEventListener("DOMContentLoaded", () => {
+      // Tab switching for generation
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const tabContents = document.querySelectorAll('.tab-content');
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          tabContents.forEach(tc => tc.style.display = 'none');
+          document.getElementById(btn.dataset.tab).style.display = 'block';
+        });
+      });
+
+      // Style button selection
+      const styleBtns = document.querySelectorAll('.style-buttons button');
+      styleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          styleBtns.forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+        });
+      });
+
+      // Page navigation
+      const navLinks = document.querySelectorAll('[data-page]');
+      const pages = document.querySelectorAll('.page');
+
+      function showPage(pageId) {
+        // Hide all pages
+        pages.forEach(page => {
+          page.classList.remove('active');
+        });
+        
+        // Show selected page
+        const targetPage = document.getElementById(pageId);
+        if (targetPage) {
+          targetPage.classList.add('active');
+        }
+
+        // Update nav active states
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active');
+        });
+        
+        const activeNavLink = document.querySelector(`.nav-link[data-page="${pageId}"]`);
+        if (activeNavLink) {
+          activeNavLink.classList.add('active');
+        }
+      }
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const pageId = link.getAttribute('data-page');
+          showPage(pageId);
+        });
+        });
+        
